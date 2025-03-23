@@ -1,149 +1,251 @@
-# Slatk
- اوقات الصلاة 
 <!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مواقيت الصلاة والقبلة</title>
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            background: url('https://upload.wikimedia.org/wikipedia/commons/9/9a/Grand_Mosque_Mecca.jpg') no-repeat center center fixed; 
-            background-size: cover;
-            direction: rtl; 
-            color: white;
-        }
-        h1 { color: #FFD700; text-shadow: 2px 2px 4px #000; }
-        #container { 
-            margin: 20px auto; 
-            padding: 20px; 
-            background: rgba(0, 0, 0, 0.7); 
-            border-radius: 10px; 
-            width: 80%; 
-            max-width: 400px; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-        }
-        button { 
-            padding: 10px 15px; 
-            margin: 10px; 
-            background: #FFD700; 
-            color: black; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            font-weight: bold;
-        }
-        button:hover { background: #FFC107; }
-        #qibla img { width: 100px; margin-top: 10px; }
-        .ad { 
-            margin-top: 20px; 
-            padding: 10px; 
-            background: rgba(255, 255, 0, 0.7); 
-            border-radius: 5px; 
-            color: black; 
-            font-weight: bold; 
-        }
-    </style>
+    <title>أوقات الصلاة</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>مواقيت الصلاة</h1>
-    <div id="container">
-        <button onclick="getPrayerTimes()">عرض أوقات الصلاة</button>
-        <div id="prayer-times"></div>
-    </div>
-
-    <h1>دعاء اليوم</h1>
-    <div id="container">
-        <p id="daily-dua">يتم تحديث الدعاء يوميًا...</p>
-    </div>
-
-    <h1>اتجاه القبلة</h1>
-    <div id="container">
-        <button onclick="getQiblaDirection()">عرض اتجاه القبلة</button>
-        <div id="qibla"></div>
-    </div>
-
-    <h1>التقويم الهجري</h1>
-    <div id="container">
-        <button onclick="getHijriDate()">عرض التاريخ الهجري</button>
-        <p id="hijri-date"></p>
-    </div>
-
-    <!-- مساحة الإعلانات -->
-    <div class="ad">
-        <p>إعلان مخصص هنا - يمكن استبداله بإعلان Google AdSense</p>
-    </div>
-
+    <header>
+        <h1>أوقات الصلاة</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="privacy.html">سياسة الخصوصية</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="prayer-times">
+            <h2>أوقات الصلاة اليوم</h2>
+            <p>جارٍ تحميل أوقات الصلاة...</p>
+        </div>
+        <div id="qibla-direction">
+            <h2>اتجاه القبلة</h2>
+            <p id="qibla">جارٍ تحميل اتجاه القبلة...</p>
+        </div>
+        <div id="daily-content">
+            <h2>دعاء اليوم</h2>
+            <p id="dua">جارٍ تحميل الدعاء...</p>
+            <h2>حديث اليوم</h2>
+            <p id="hadith">جارٍ تحميل الحديث...</p>
+        </div>
+    </main>
+    <footer>
+        <p>© 2023 موقع أوقات الصلاة. جميع الحقوق محفوظة.</p>
+    </footer>
     <script src="script.js"></script>
-
 </body>
 </html>
-function getPrayerTimes() {
-    navigator.geolocation.getCurrentPosition(position => {
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-        let apiUrl = `https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=2`;
-
-        fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            let times = data.data.timings;
-            let output = `<h2>مواقيت الصلاة</h2>`;
-            for (let prayer in times) {
-                output += `<p><strong>${prayer}</strong>: ${times[prayer]}</p>`;
-            }
-            document.getElementById("prayer-times").innerHTML = output;
-        })
-        .catch(error => console.error("حدث خطأ:", error));
-    });
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>سياسة الخصوصية</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="privacy.html">سياسة الخصوصية</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="privacy-policy">
+            <h2>سياسة الخصوصية</h2>
+            <p>
+                نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية. هذه السياسة توضح كيفية تعاملنا مع المعلومات التي نجمعها منك.
+            </p>
+            <h3>1. المعلومات التي نجمعها</h3>
+            <p>
+                نجمع معلومات مثل الموقع الجغرافي لتحديد أوقات الصلاة واتجاه القبلة.
+            </p>
+            <h3>2. استخدام المعلومات</h3>
+            <p>
+                نستخدم المعلومات لتوفير خدمات مثل أوقات الصلاة واتجاه القبلة.
+            </p>
+            <h3>3. مشاركة المعلومات</h3>
+            <p>
+                نحن لا نشارك معلوماتك الشخصية مع أطراف خارجية.
+            </p>
+        </div>
+    </main>
+    <footer>
+        <p>© 2023 موقع أوقات الصلاة. جميع الحقوق محفوظة.</p>
+    </footer>
+</body>
+</html>
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(270deg, #4CAF50, #2196F3, #FFC107, #E91E63);
+    background-size: 400% 400%;
+    animation: GradientBackground 15s ease infinite;
+    color: #333;
 }
 
-const duas = [
-    "اللهم اجعلني لك شاكراً، لك ذاكراً، لك مخبتاً إليك أواهاً منيباً.",
-    "اللهم أصلح لي ديني الذي هو عصمة أمري، وأصلح لي دنياي التي فيها معاشي.",
-    "اللهم اجعلنا من عبادك الصالحين، المتقين، المقربين.",
-    "اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً.",
-    "اللهم اغفر لي ذنوبي، وخطاياي، وجميع زلاتي."
-];
-
-function showDailyDua() {
-    let todayIndex = new Date().getDate() % duas.length;
-    document.getElementById("daily-dua").innerText = duas[todayIndex];
+@keyframes GradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-function getQiblaDirection() {
-    navigator.geolocation.getCurrentPosition(position => {
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-        let apiUrl = `https://api.aladhan.com/v1/qibla/${lat}/${lon}`;
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        fetch(apiUrl)
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #4CAF50;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+#prayer-times, #qibla-direction, #daily-content, .privacy-policy {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* تحسينات للجوال */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    #prayer-times, #qibla-direction, #daily-content, .privacy-policy {
+        padding: 15px;
+        margin: 10px;
+    }
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const apiUrl = 'https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5';
+    const qiblaApiUrl = 'https://api.aladhan.com/v1/qibla/21.4225/39.8262'; // إحداثيات مكة المكرمة
+
+    // مصفوفة تحتوي على مجموعة من الأدعية
+    const adiya = [
+        "اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً.",
+        "اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل، والبخل والجبن، وضلع الدين وغلبة الرجال.",
+        "اللهم إني أسألك رحمة من عندك تهدي بها قلبي، وتجمع بها شملي، وتلم بها شعثي.",
+        "اللهم إني أسألك من الخير كله عاجله وآجله ما علمت منه وما لم أعلم، وأعوذ بك من الشر كله عاجله وآجله ما علمت منه وما لم أعلم."
+    ];
+
+    // مصفوفة تحتوي على مجموعة من الأحاديث
+    const ahadith = [
+        "قال رسول الله صلى الله عليه وسلم: «من صلى علي صلاة واحدة صلى الله عليه عشرًا». (صحيح مسلم)",
+        "قال رسول الله صلى الله عليه وسلم: «الكلمة الطيبة صدقة». (صحيح البخاري)",
+        "قال رسول الله صلى الله عليه وسلم: «من كان يؤمن بالله واليوم الآخر فليقل خيرًا أو ليصمت». (صحيح البخاري)",
+        "قال رسول الله صلى الله عليه وسلم: «لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه». (صحيح البخاري)"
+    ];
+
+    // اختيار دعاء وحديث عشوائي
+    const randomDua = adiya[Math.floor(Math.random() * adiya.length)];
+    const randomHadith = ahadith[Math.floor(Math.random() * ahadith.length)];
+
+    // عرض الدعاء والحديث
+    document.getElementById('dua').textContent = randomDua;
+    document.getElementById('hadith').textContent = randomHadith;
+
+    // جلب أوقات الصلاة
+    fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            let qiblaDirection = data.data.direction;
-            document.getElementById("qibla").innerHTML = `
-                <p>زاوية القبلة: ${qiblaDirection.toFixed(2)}°</p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kaaba_at_Masjid_al-Haram.jpg/320px-Kaaba_at_Masjid_al-Haram.jpg" alt="اتجاه القبلة">
+            const timings = data.data.timings;
+            const prayerTimesDiv = document.getElementById('prayer-times');
+            prayerTimesDiv.innerHTML = `
+                <p>الفجر: ${timings.Fajr}</p>
+                <p>الشروق: ${timings.Sunrise}</p>
+                <p>الظهر: ${timings.Dhuhr}</p>
+                <p>العصر: ${timings.Asr}</p>
+                <p>المغرب: ${timings.Maghrib}</p>
+                <p>العشاء: ${timings.Isha}</p>
             `;
         })
-        .catch(error => console.error("حدث خطأ أثناء جلب اتجاه القبلة:", error));
-    });
-}
+        .catch(error => {
+            console.error('Error fetching prayer times:', error);
+            document.getElementById('prayer-times').innerHTML = '<p>حدث خطأ أثناء جلب أوقات الصلاة.</p>';
+        });
 
-function getHijriDate() {
-    let apiUrl = `https://api.aladhan.com/v1/gToH/${new Date().toISOString().split('T')[0]}`;
+    // جلب اتجاه القبلة
+    fetch(qiblaApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const qiblaDirection = data.data.direction;
+            document.getElementById('qibla').textContent = `اتجاه القبلة: ${qiblaDirection} درجة من الشمال.`;
+        })
+        .catch(error => {
+            console.error('Error fetching qibla direction:', error);
+            document.getElementById('qibla').textContent = 'حدث خطأ أثناء جلب اتجاه القبلة.';
+        });
 
-    fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-        let hijriDate = data.data.hijri.date;
-        document.getElementById("hijri-date").innerText = `التاريخ الهجري: ${hijriDate}`;
-    })
-    .catch(error => console.error("حدث خطأ أثناء جلب التاريخ الهجري:", error));
-}
+    // إشعارات الصلاة
+    function showPrayerNotification(prayerName, prayerTime) {
+        if (Notification.permission === 'granted') {
+            new Notification(`حان وقت صلاة ${prayerName}`, {
+                body: `الوقت الحالي: ${prayerTime}`,
+                icon: 'icon.png'
+            });
+        }
+    }
 
-// تشغيل الدعاء اليومي عند تحميل الصفحة
-showDailyDua();
+    // طلب إذن الإشعارات
+    if (Notification.permission !== 'granted') {
+        Notification.requestPermission();
+    }
+});
